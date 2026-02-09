@@ -1,2 +1,3 @@
-Normalized_Output/
-Equalized_Output/
+*.pyc
+*.mat
+*.swp
