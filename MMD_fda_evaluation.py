@@ -33,11 +33,8 @@ def mmd_square(x, y, sigmas=[1.0, 2.0, 5.0, 10.0, 20.0]):
     else:
         # single img
         k_xx = x_kernel.mean()
-        # print(k_xx)
         k_yy = y_kernel.mean()
-        # print(k_yy)
         k_xy = xy_kernel.mean()
-        # print(k_xy)
 
     return (k_xx + k_yy - 2 * k_xy).item()
 
@@ -106,11 +103,9 @@ class FeatureExtractor:
         ])
     
     def extract_features(self, image_np):
-        # Convert [C, H, W] to [H, W, C] if needed
         if image_np.shape[0] == 3:
             image_np = image_np.transpose(1, 2, 0)
         
-        # Ensure 0-255 uint8 for ToPILImage
         if image_np.max() <= 1.0:
             image_np = (image_np * 255).astype(np.uint8)
         
@@ -118,7 +113,7 @@ class FeatureExtractor:
         
         with torch.no_grad():
             features = self.feature_extractor(img_tensor).view(1, -1)
-            # L2 Normalization makes MMD
+            # L2 Normalization 
             features = torch.nn.functional.normalize(features, p=2, dim=1)
         
         return features.cpu()
@@ -177,14 +172,13 @@ def main():
     trg_path = "sample_data/original/1_7000_0.png"
     output_dir = "res"
     
-
     im_src = Image.open(src_path).convert('RGB')
     im_trg = Image.open(trg_path).convert('RGB')
     # im_src = Image.open(src_path).convert('RGB').resize((2048, 1024))
     # im_trg = Image.open(trg_path).convert('RGB').resize((2048, 1024))
     if im_src.size != im_trg.size:
         im_trg = im_trg.resize(im_src.size, Image.BICUBIC)
-    # To [C, H, W] float32
+
     np_src = np.asarray(im_src, np.float32) / 255.0
     np_trg = np.asarray(im_trg, np.float32) / 255.0
     np_src = np_src.transpose(2, 0, 1)

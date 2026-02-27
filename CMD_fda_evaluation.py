@@ -9,7 +9,6 @@ from utils import FDA_source_to_target_np
 
 # ==================== CMD Implementation ====================
 
-
 def cmd_loss(x, y, n_moments=5):
     """
     x (torch.Tensor): Features from the source domain [N, D].
@@ -94,11 +93,9 @@ class FeatureExtractor:
         ])
     
     def extract_features(self, image_np):
-        # Convert [C, H, W] to [H, W, C] if needed
         if image_np.shape[0] == 3:
             image_np = image_np.transpose(1, 2, 0)
         
-        # Ensure 0-255 uint8 for ToPILImage
         if image_np.max() <= 1.0:
             image_np = (image_np * 255).astype(np.uint8)
         
