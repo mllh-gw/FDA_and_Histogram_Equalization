@@ -45,7 +45,39 @@ results=calculate_evaluate_divergence(V, V_clahe)
 plot_analysis(img_bgr, img_bgr_hsv_clahe, results)
 
 
-output_path = 'Histrogram_Normalization_output/'
+# # --- VISUALIZATION: Original vs CLAHE (RGB) ---
+# plt.figure(figsize=(12, 8))
+
+# # Original Image (Color)
+# plt.subplot(2, 2, 1)
+# plt.imshow(cv.cvtColor(img_bgr, cv.COLOR_BGR2RGB))
+# plt.title('Original (Color)')
+
+# # CLAHE Result (Color)
+# plt.subplot(2, 2, 2)
+# plt.imshow(cv.cvtColor(img_bgr_hsv_clahe, cv.COLOR_BGR2RGB))
+# plt.title('CLAHE Enhanced (Color)')
+
+# # Original V-Channel Histogram
+# plt.subplot(2, 2, 3)
+# plt.hist(V.flatten(), bins=256, range=(0, 256), color='r', alpha=0.7)
+# plt.title('Original V-Channel Histogram')
+# plt.xlabel('Pixel Value')
+# plt.ylabel('Frequency')
+# plt.xlim([0, 256])
+
+# # CLAHE V-Channel Histogram
+# plt.subplot(2, 2, 4)
+# plt.hist(V_clahe.flatten(), bins=256, range=(0, 256), color='b', alpha=0.7)
+# plt.title('CLAHE V-Channel Histogram')
+# plt.xlabel('Pixel Value')
+# plt.ylabel('Frequency')
+# plt.xlim([0, 256])
+
+# plt.tight_layout()
+# plt.show()
+
+output_path = 'Histogram_Equalization_output/'
 if not os.path.exists(output_path):
     os.makedirs(output_path)
 

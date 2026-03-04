@@ -31,7 +31,7 @@ img_bgr_ghe = cv.cvtColor(img_lab_ghe, cv.COLOR_LAB2BGR)
 results=calculate_evaluate_divergence(L, L_ghe)
 plot_analysis(img_bgr, img_bgr_ghe, results)
 
-#Visuzlization
+# #Visuzlization
 # plt.figure(figsize=(14, 10))
 
 # plt.subplot(2, 2, 1)
@@ -65,7 +65,7 @@ plot_analysis(img_bgr, img_bgr_ghe, results)
 # plt.tight_layout()
 # plt.show()
 
-output_path = 'Histrogram_Normalization_output/'
+output_path = 'Histogram_Equalization_output/'
 if not os.path.exists(output_path):
     os.makedirs(output_path)
     print(f"Created folder: {output_path}")

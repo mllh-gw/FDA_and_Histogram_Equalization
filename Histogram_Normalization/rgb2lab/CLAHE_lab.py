@@ -43,7 +43,8 @@ img_bgr_clahe = cv.cvtColor(img_lab_clahe, cv.COLOR_LAB2BGR)
 results=calculate_evaluate_divergence(L, L_clahe)
 plot_analysis(img_bgr, img_bgr_clahe, results)
 
-# # --- VISUALIZATION: Original vs CLAHE (RGB) ---
+# --- VISUALIZATION: Original vs CLAHE (RGB) ---
+
 # plt.figure(figsize=(12, 8))
 
 # # Original Image (Color)
@@ -61,6 +62,7 @@ plot_analysis(img_bgr, img_bgr_clahe, results)
 # plt.hist(L.flatten(), bins=256, range=(0, 256), color='r', alpha=0.7)
 # plt.title('Original L-Channel Histogram')
 # plt.xlabel('Pixel Value')
+# plt.ylim([0, 1100000])
 # plt.ylabel('Frequency')
 # plt.xlim([0, 256])
 
@@ -69,6 +71,7 @@ plot_analysis(img_bgr, img_bgr_clahe, results)
 # plt.hist(L_clahe.flatten(), bins=256, range=(0, 256), color='b', alpha=0.7)
 # plt.title('CLAHE L-Channel Histogram')
 # plt.xlabel('Pixel Value')
+# plt.ylim([0, 1100000])
 # plt.ylabel('Frequency')
 # plt.xlim([0, 256])
 
@@ -76,7 +79,7 @@ plot_analysis(img_bgr, img_bgr_clahe, results)
 # plt.show()
 
 # --- SAVE COMPARISON RESULT ---
-output_path = 'Histrogram_Normalization_output/'
+output_path = 'Histogram_Equalization_output/'
 if not os.path.exists(output_path):
     os.makedirs(output_path)
     print(f"Created folder: {output_path}")

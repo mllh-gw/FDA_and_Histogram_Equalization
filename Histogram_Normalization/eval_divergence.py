@@ -58,6 +58,7 @@ def plot_analysis(img_bgr_orig, img_bgr_enh, metrics):
     plt.subplot(2, 3, 3)
     plt.axis('off')
     text = (
+        # f"CLAHE (LAB color space)\n"
         f"Metrics (bits)\n"
         f"{'-'*30}\n"
         f"KL Divergence:  {metrics['kl_score']:.4f}\n"
